@@ -64,17 +64,15 @@ def main():
     # Initialize tester
     tester = RAGTester()
     
-    # Test queries
-    test_queries = [
-        "Tell me about attention is all you need",
-        "What is spatialVLM?",
-        "Explain the transformer architecture",
-        "What are the key components of deep learning?",
-    ]
+    # Test just retriever
+    docs = tester.test_retriever("What is spatialVLM?")
     
-    # Run tests
-    for query in test_queries:
-        tester.test_rag_pipeline(query)
+    # Test just generator
+    response = tester.test_generator("What is spatialVLM?", context=some_docs)
+    
+    # Test full pipeline
+    response = tester.test_rag_pipeline("What is spatialVLM?")
+
 
 if __name__ == "__main__":
     main()
